@@ -30,12 +30,16 @@ ActiveRecord::Schema.define(version: 20171027132052) do
   end
 
   create_table "tickets", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "train_id"
+    t.integer "start_station_id"
+    t.integer "finish_station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "trains", force: :cascade do |t|
-    t.integer "number"
+    t.string "number"
     t.integer "current_station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
