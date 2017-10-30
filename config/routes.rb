@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
-  root "railway_station#index"
+  root "railway_stations#index"
 
-  resources :railway_station
+  resources :railway_stations
 
 end
