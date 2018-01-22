@@ -4,4 +4,5 @@ class RailwayStation < ApplicationRecord
   has_many :trains, foreign_key: :current_station_id
 
   validates :name, presence: true
+  validates :name, uniqueness: true
 end

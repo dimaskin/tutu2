@@ -12,15 +12,17 @@
 
 ActiveRecord::Schema.define(version: 20171027132052) do
 
-  create_table "railway_station_routes", force: :cascade do |t|
-    t.integer "railway_station_id"
-    t.integer "route_id"
-  end
-
   create_table "railway_stations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "railway_stations_routes", force: :cascade do |t|
+    t.integer "railway_station_id"
+    t.integer "route_id"
+    t.index ["railway_station_id"], name: "index_railway_stations_routes_on_railway_station_id"
+    t.index ["route_id"], name: "index_railway_stations_routes_on_route_id"
   end
 
   create_table "routes", force: :cascade do |t|
