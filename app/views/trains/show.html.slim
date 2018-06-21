@@ -1,19 +1,17 @@
 h1 Поезд
-p#notice= notice
 
 .col-xs-offset-2.col-xs-4 Номер:
-.col-xs-4 =< @train.number
+.col-xs-4 = @train.number
 .clearfix
 
 .col-xs-offset-2.col-xs-4  Маршрут на котором находится поезд:
 - if @train.route.present?
-  .col-xs-4 =< @train.route.name
+  .col-xs-4 = @train.route.name
 - else
   .col-xs-4 Поезд не находится ни на какой станции
 .clearfix
 br
 br
 
-=> link_to 'Редактирование', edit_train_path(@train)
-| \
-=< link_to 'Вернуться назад', trains_path
+= link_to 'Редактирование', edit_train_path(@train)
+= link_to 'Вернуться назад', trains_path

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CarriageTest < ActiveSupport::TestCase
+class RoutesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

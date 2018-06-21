@@ -1,0 +1,34 @@
+p
+  strong Название:
+  = @route.name
+  -if @route.trains.present?
+    table
+      caption
+        strong Поезда на маршруте
+    thead
+      tr
+        th Номер
+        th Маршрут
+        th colspan="3" 
+    tbody
+      = render @route.trains
+  -else
+    strong Поездов на маршруте нет
+
+br/
+-if @route.railway_stations.present?
+  table
+    caption
+      strong Станции на маршруте
+    thead
+      tr
+        th Название
+        th colspan="3" 
+    tbody
+      = render @route.railway_stations
+-else
+  strong Станций на маршруте нет
+
+br/
+= link_to 'Изменить', edit_route_path(@route)
+= link_to 'Назад', routes_path
