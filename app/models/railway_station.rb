@@ -5,4 +5,7 @@ class RailwayStation < ApplicationRecord
 
   validates :name, presence: true
   validates :name, uniqueness: true
+
+  scope :ordered, -> { includes(:railway_stations_routes).order("railway_stations_routes.station_pos ASC") }
+
 end
