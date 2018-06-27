@@ -6,10 +6,23 @@ h1 Поезд
 
 .col-xs-offset-2.col-xs-4  Маршрут на котором находится поезд:
 - if @train.route.present?
-  .col-xs-4 = @train.route.name
+    .col-xs-4 = @train.route.name
 - else
-  .col-xs-4 Поезд не находится ни на какой станции
+    .col-xs-4 Поезд не находится ни на какой станции
 .clearfix
+
+p
+  strong Вагоны:
+  br/
+  - if @train.carriages.present?
+    - carriages = @train.carriages_sort? ? @train.carriages.order_asc : @train.carriages.order_desc
+    - carriages.each do |carriage|
+        = link_to "#{carriage.number} #{carriage.type}", carriage_path(carriage)
+        br/
+    
+  - else
+    Нет вагонов
+
 br
 br
 

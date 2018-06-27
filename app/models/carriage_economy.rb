@@ -1,5 +1,5 @@
 class CarriageEconomy < Carriage
-  validates :up_seats, :down_seats, :side_up_seats, :side_down_seats, presence: true
+  validates :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats, presence: true
   
   def type_name
     'Плацкартный'
