@@ -5,7 +5,12 @@ class Carriage < ApplicationRecord
 
   scope :order_asc, -> { order('number ASC') }
   scope :order_desc, -> { order('number DESC')}
-  
+
+  scope :economy, -> { where(type: 'CarriageEconomy') }
+  scope :compartment, -> { where(type: 'CarriageCompartment') }
+  scope :sv, -> { where(type: 'CarriageSv') }
+  scope :seat, -> { where(type: 'CarriageSeat') }  
+
   private
 
   def update_number
