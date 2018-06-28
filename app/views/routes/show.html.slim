@@ -25,10 +25,11 @@ br/
         th Название
         th colspan="3" 
     tbody
-      = render @route.railway_stations
+      = render @route.railway_stations.ordered
 -else
   strong Станций на маршруте нет
 
 br/
 = link_to 'Изменить', edit_route_path(@route)
 = link_to 'Назад', routes_path
+p asdasdasdas

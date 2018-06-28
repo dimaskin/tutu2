@@ -6,6 +6,7 @@ class RoutesController < ApplicationController
   end
 
   def show
+    #@routes = Route.ordered
   end
 
   def new
