@@ -1,6 +1,4 @@
-br
-br
-h1.center Главная страница приветствия
-
-= link_to 'Список станций', railway_stations_path
-= link_to 'Список поездов', trains_path
+nav.navbar.navbar-fixed-top
+  ul.nav
+    li.active = link_to 'Список станций', railway_stations_path
+    li = link_to 'Список поездов', trains_path
