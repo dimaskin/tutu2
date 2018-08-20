@@ -8,20 +8,25 @@ html
     = csrf_meta_tags
   body
     .container
-      nav.navbar.navbar-expand-lg.navbar-light.bg-light
-        a.navbar-brand href="#"  tutu
-        button.navbar-toggler aria-controls="navbarNavDropdown" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNavDropdown" data-toggle="collapse" type="button" 
-          span.navbar-toggler-icon
-        #navbarNavDropdown.navbar-collapse.collapse
-          ul.navbar-nav.mr-auto
-            li.nav-item.active = link_to 'Список станций', railway_stations_path, :class => "nav-link"
-            li.nav-item = link_to 'Список поездов', trains_path, :class => "nav-link"
-            li.nav-item
-              a.nav-link href="#"  Pricing
-          /ul.navbar-nav
-            li.nav-item
-              a.nav-link href=("{{ url('/login') }}")  Login
-            li.nav-item
-              a.nav-link href=("{{ url('/register') }}")  Register
-      = yield
-      = render "common/footer"
+      header
+        nav.navbar.navbar-expand-md.navbar-dark.bg-dark
+          a.navbar-brand = link_to "tutu", root_path  
+          button.navbar-toggler aria-controls="navbarNavDropdown" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNavDropdown" data-toggle="collapse" type="button" 
+            span.navbar-toggler-icon
+          #navbarNavDropdown.navbar-collapse.collapse
+            ul.navbar-nav.mr-auto
+              li.nav-item.active = link_to 'Станции', railway_stations_path, :class => "nav-link"
+              li.nav-item = link_to 'Маршруты', routes_path, :class => "nav-link"
+              li.nav-item = link_to 'Поезда', trains_path, :class => "nav-link"
+              li.nav-item = link_to 'Вагоны', carriages_path, :class => "nav-link"
+                
+            /ul.navbar-nav
+              li.nav-item
+                a.nav-link href=("{{ url('/login') }}")  Login
+              li.nav-item
+                a.nav-link href=("{{ url('/register') }}")  Register
+      main
+        = yield
+      footer.fixed-bottom
+        = render "common/footer"
+      

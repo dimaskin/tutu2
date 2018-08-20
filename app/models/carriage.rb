@@ -2,6 +2,12 @@ class Carriage < ApplicationRecord
   belongs_to :train
   #validates :number
   before_validation :update_number
+  TYPES = {
+    'Купе': 'CarriageCompartment',
+    'Плацкартный': 'CarriageEconomy',
+    'СВ': 'CarriageSv',
+    'Сидячий': 'CarriageSeat'
+  }.freeze
 
   scope :order_asc, -> { order('number ASC') }
   scope :order_desc, -> { order('number DESC')}

@@ -9,18 +9,26 @@
   .field
     = f.label :train
     = f.collection_select :train, Train.all, :id, :number
-
   .field
     = f.label :type_carriage 
     = f.select :type_carriage, Carriage::TYPES, {}
-
   .field
     = f.label :top_seats
     = f.number_field :top_seats, in: 1..50, step: 1
-
   .field
     = f.label :bottom_seats
     = f.number_field :bottom_seats, in: 1..50, step: 1
-
   .actions
     = f.submit
+
+/= form_with(url: carriage_path(train_id: @train.id, type: @carriage.class)) do |f| 
+  = render 'common/errors', resource: @carriage
+  p Добавление = @carriage.type_name  вагона к поезду № = @train.number 
+  @carriage.seat_types.each do |seat| 
+    .field
+      = f.label seat, Carriage.seats_type(seat)
+      = f.number_field seat
+
+  /f.hidden_field :train_id, value: @train.id
+    .actions
+      = f.submit "#{ @wagon.new_record? ? 'Создать' : 'Изменить' }"
