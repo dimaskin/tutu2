@@ -1,9 +1,44 @@
-h1 Поезд
+/p
+  strong Количество вагонов:
+  ul
+    li Плацкартных: = @train.wagons.each   |wagon| wagon.type == 'EconomyWagon'  .size
+    li Купейных:    = @train.wagons.each   |wagon| wagon.type == 'CoupeWagon'  .size %
+    li СВ:          = @train.wagons.each   |wagon| wagon.type == 'SvWagon'  .size %
+    li Сидячих:     = @train.wagons.each   |wagon| wagon.type == 'SedentaryWagon'  .size %
+    li
+      | Вагоны:
+      | <% @train.wagons.each do |wagon| %
+      | <%= link_to wagon.number, wagon_path(wagon) %
+      | <% end %
+    li
+      | <% if @train.sort_by_tail %
+      | Нумерация вагонов с хвоста поезда
+      | <% else %
+      | Нумерация вагонов с головы поезда
+      | <% end %
+/p = link_to 'Добавить плацкартный вагон', new_train_carriages_path(@train, type: 'CarriageEconomy') %
+/p = link_to 'Добавить купейный вагон',    new_train_carriages_path(@train, type: 'CarriageCompartment') %
+/p = link_to 'Добавить СВ вагон',          new_train_carriages_path(@train, type: 'CarriageSv') %
+/p = link_to 'Добавить сидячий вагон',     new_train_carriages_path(@train, type: 'CarriageSeat') %
+/p
+  strong Билеты:
+  ul
+    | <% @train.tickets.each do |ticket| %
+    li
+      b №<%= ticket.number %
+      | _
+      | Пользователь: <%= ticket.user&.title %>;
+      | Вагон: <%= ticket.wagon&.number %>;
+      | Станция: <%= ticket.railway_station&.title %
+    | <% end %
+/= link_to 'Изменить', edit_train_path(@train)
+/= link_to 'Назад', trains_path
 
+
+h1 Поезд
 .col-xs-offset-2.col-xs-4 Номер:
 .col-xs-4 = @train.number
 .clearfix
-
 .col-xs-offset-2.col-xs-4  Маршрут на котором находится поезд:
 - if @train.route.present?
     .col-xs-4 = @train.route.name
@@ -12,6 +47,14 @@ h1 Поезд
 .clearfix
 
 p
+  strong Количество вагонов:
+  ul
+    li Плацкартных: = @train.carriages.each {|carriage| carriage.type == 'CarriageEconomy'}.size
+    li Купейных:    = @train.carriages.each {|carriage| carriage.type == 'CarriageCompartment'}.size
+    li СВ:          = @train.carriages.each {|carriage| carriage.type == 'CarriageSv'}.size
+    li Сидячих:     = @train.carriages.each {|carriage| carriage.type == 'CarriageSeat'}.size
+    
+/p
   strong Вагоны:
   br/
   - if @train.carriages.present?
@@ -23,9 +66,5 @@ p
   - else
     Нет вагонов
 
-
-br
-br
-
-= link_to 'Редактирование', edit_train_path(@train)
-= link_to 'Вернуться назад', trains_path
+/= link_to 'Редактирование', edit_train_path(@train)
+/= link_to 'Вернуться назад', trains_path
