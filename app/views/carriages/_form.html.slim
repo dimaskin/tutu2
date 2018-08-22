@@ -10,8 +10,8 @@
     = f.label :train
     = f.collection_select :train, Train.all, :id, :number
   .field
-    = f.label :type_carriage 
-    = f.select :type_carriage, Carriage::TYPES, {}
+    = f.label :type 
+    = f.select :type, Carriage::TYPES, {}
   .field
     = f.label :top_seats
     = f.number_field :top_seats, in: 1..50, step: 1

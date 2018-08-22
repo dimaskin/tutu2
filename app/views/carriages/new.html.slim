@@ -1,3 +1,3 @@
 h1 Новый вагон
-= render 'form', carriage: @carriage
+= render 'form', carriage: @carriage.becomes(Carriage)
 = link_to 'Назад', carriages_path

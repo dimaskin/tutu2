@@ -1,21 +1,21 @@
 class Carriage < ApplicationRecord
   belongs_to :train
-  #validates :number
+  validates :number, uniqueness: { scope: :train_id }
   before_validation :update_number
   TYPES = {
-    'Купе': 'CarriageCompartment',
-    'Плацкартный': 'CarriageEconomy',
-    'СВ': 'CarriageSv',
-    'Сидячий': 'CarriageSeat'
+    'Купе': 'CompartmentCarriage',
+    'Плацкартный': 'EconomyCarriage',
+    'СВ': 'SvCarriage',
+    'Сидячий': 'SeatCarriage'
   }.freeze
 
   scope :order_asc, -> { order('number ASC') }
   scope :order_desc, -> { order('number DESC')}
 
-  scope :economy, -> { where(type: 'CarriageEconomy') }
-  scope :compartment, -> { where(type: 'CarriageCompartment') }
-  scope :sv, -> { where(type: 'CarriageSv') }
-  scope :seat, -> { where(type: 'CarriageSeat') }  
+  scope :economy, -> { where(type: 'EconomyCarriage') }
+  scope :compartment, -> { where(type: 'CompartmentCarriage') }
+  scope :sv, -> { where(type: 'SvCarriage') }
+  scope :seat, -> { where(type: 'SeatCarriage') }  
 
   private
 
