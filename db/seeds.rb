@@ -22,13 +22,13 @@ t1.current_station = msk
 t1.route = r1
 t1.save
 
-c1 = SvCarriage.new(bottom_seats: 80)
+c1 = SvCarriage.new(bottom_seats: 20)
 c1.train = t1
 c1.save
-c2 = SvCarriage.new(bottom_seats: 100)
+c2 = SvCarriage.new(bottom_seats: 30)
 c2.train = t1
 c2.save
-c3 = SvCarriage.new(bottom_seats: 50)
+c3 = EconomyCarriage.new(bottom_seats: 40)
 c3.train = t1
 c3.save
 

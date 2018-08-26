@@ -1,39 +1,3 @@
-/p
-  strong Количество вагонов:
-  ul
-    li Плацкартных: = @train.wagons.each   |wagon| wagon.type == 'EconomyWagon'  .size
-    li Купейных:    = @train.wagons.each   |wagon| wagon.type == 'CoupeWagon'  .size %
-    li СВ:          = @train.wagons.each   |wagon| wagon.type == 'SvWagon'  .size %
-    li Сидячих:     = @train.wagons.each   |wagon| wagon.type == 'SedentaryWagon'  .size %
-    li
-      | Вагоны:
-      | <% @train.wagons.each do |wagon| %
-      | <%= link_to wagon.number, wagon_path(wagon) %
-      | <% end %
-    li
-      | <% if @train.sort_by_tail %
-      | Нумерация вагонов с хвоста поезда
-      | <% else %
-      | Нумерация вагонов с головы поезда
-      | <% end %
-/p = link_to 'Добавить плацкартный вагон', new_train_carriages_path(@train, type: 'CarriageEconomy') %
-/p = link_to 'Добавить купейный вагон',    new_train_carriages_path(@train, type: 'CarriageCompartment') %
-/p = link_to 'Добавить СВ вагон',          new_train_carriages_path(@train, type: 'CarriageSv') %
-/p = link_to 'Добавить сидячий вагон',     new_train_carriages_path(@train, type: 'CarriageSeat') %
-/p
-  strong Билеты:
-  ul
-    | <% @train.tickets.each do |ticket| %
-    li
-      b №<%= ticket.number %
-      | _
-      | Пользователь: <%= ticket.user&.title %>;
-      | Вагон: <%= ticket.wagon&.number %>;
-      | Станция: <%= ticket.railway_station&.title %
-    | <% end %
-/= link_to 'Изменить', edit_train_path(@train)
-/= link_to 'Назад', trains_path
-
 
 h1 Поезд
 .col-xs-offset-2.col-xs-4 Номер:
@@ -47,24 +11,64 @@ h1 Поезд
 .clearfix
 
 p
-  strong Количество вагонов:
-  ul
-    li Плацкартных: = @train.carriages.each {|carriage| carriage.type == 'CarriageEconomy'}.size
-    li Купейных:    = @train.carriages.each {|carriage| carriage.type == 'CarriageCompartment'}.size
-    li СВ:          = @train.carriages.each {|carriage| carriage.type == 'CarriageSv'}.size
-    li Сидячих:     = @train.carriages.each {|carriage| carriage.type == 'CarriageSeat'}.size
-    
-/p
-  strong Вагоны:
-  br/
-  - if @train.carriages.present?
-    - carriages = @train.carriages_sort? ? @train.carriages.order_asc : @train.carriages.order_desc
-    - carriages.each do |carriage|
-        = link_to "#{carriage.number} #{carriage.type}", carriage_path(carriage)
-        br/
-    
-  - else
-    Нет вагонов
+  strong
+    | Плацкартных вагонов:
+    br
+  = @train.get_carriages_economy_count
+  br
+p
+  strong
+    | Купейных вагонов:
+    br
+  = @train.get_carriages_compartment_count
+  br
+p
+  strong
+    | Сидячих вагонов:
+    br
+  = @train.get_carriages_seat_count
+  br
+p
+  strong
+    | СВ вагонов:
+    br
+  = @train.get_carriages_sv_count
+  br
 
-/= link_to 'Редактирование', edit_train_path(@train)
-/= link_to 'Вернуться назад', trains_path
+p
+  strong
+    | Плацкартных мест:
+    br
+  - if @train.get_carriages_economy_count.zero?
+    | Нет плацкартных вагонов
+  - else
+    | Верхних:
+    = @train.places_by_type(:EconomyCarriage, :top_seats)
+    br
+    | Нижних:
+    = @train.places_by_type(:EconomyCarriage, :bottom_seats)
+p
+  strong
+    | Купейных мест:
+    br
+  - if @train.get_carriages_compartment_count.zero?
+    | Нет купейных вагонов
+  -else
+    | Верхних:
+    = @train.places_by_type(:compartmentCarriage, :top_seats)
+    br
+    | Нижних:
+    = @train.places_by_type(compartmentCarriage, :lowerbottom_seats_berth)
+    br
+/p
+  strong
+    | Номера вагонов:
+    br
+  - if @train.carriages.empty?
+    | Вагонов нет
+  - else
+    - @train.carriages_sort.each do |carriage|
+      li
+        =link_to carriage.number, carriage_path(carriage)
+= link_to 'Изменить', edit_train_path(@train)
+= link_to 'Назад', trains_path

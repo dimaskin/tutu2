@@ -18,4 +18,9 @@ class Train < ApplicationRecord
   def get_carriages_sv_count
     carriages.sv.count
   end
+  def places_by_type(carriage_type, place_type)
+    carriages.where(type: carriage_type).sum(place_type)
+    #carriages.where(type: carriage_type)
+    #place_type
+  end
 end

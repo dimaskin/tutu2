@@ -3,10 +3,10 @@ class Carriage < ApplicationRecord
   validates :number, uniqueness: { scope: :train_id }
   before_validation :update_number
   TYPES = {
-    'Купе': 'CompartmentCarriage',
-    'Плацкартный': 'EconomyCarriage',
-    'СВ': 'SvCarriage',
-    'Сидячий': 'SeatCarriage'
+    CompartmentCarriage: 'Купе',
+    EconomyCarriage: 'Плацкартный',
+    SvCarriage: 'СВ',
+    SeatCarriage: 'Сидячий'
   }.freeze
 
   scope :order_asc, -> { order('number ASC') }
@@ -20,7 +20,7 @@ class Carriage < ApplicationRecord
   private
 
   def update_number
-    max_number = self.train.carriages.maximum(:number) || 0
-    self.number = max_number + 1
+    #max_number = train.carriages.maximum(:number) || 0
+    #self.number = max_number + 1
   end
 end
