@@ -15,7 +15,7 @@ p
   -else
     strong Поездов на маршруте нет
 
-br/
+br
 -if @route.railway_stations.present?
   table
     caption
@@ -29,7 +29,6 @@ br/
 -else
   strong Станций на маршруте нет
 
-br/
+br
 = link_to 'Изменить', edit_route_path(@route)
 = link_to 'Назад', routes_path
-p asdasdasdas

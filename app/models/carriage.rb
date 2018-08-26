@@ -1,7 +1,9 @@
 class Carriage < ApplicationRecord
   belongs_to :train
+  
   validates :number, uniqueness: { scope: :train_id }
   before_validation :update_number
+
   TYPES = {
     CompartmentCarriage: 'Купе',
     EconomyCarriage: 'Плацкартный',
