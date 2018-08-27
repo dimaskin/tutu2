@@ -1,4 +1,4 @@
 h1 Изменение вагона
-= render 'form', carriage: @carriage
-= link_to 'Посмотреть', @carriage
+= render 'form', carriage: @carriage.becomes(Carriage)
+= link_to 'Посмотреть', @carriage.becomes(Carriage)
 = link_to 'Назад', carriages_path

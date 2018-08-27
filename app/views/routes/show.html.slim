@@ -15,7 +15,7 @@ p
   -else
     strong Поездов на маршруте нет
 
-br/
+br
 -if @route.railway_stations.present?
   table
     caption
@@ -25,10 +25,10 @@ br/
         th Название
         th colspan="3" 
     tbody
-      = render @route.railway_stations
+      = render @route.railway_stations.ordered
 -else
   strong Станций на маршруте нет
 
-br/
+br
 = link_to 'Изменить', edit_route_path(@route)
 = link_to 'Назад', routes_path
