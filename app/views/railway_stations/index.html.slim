@@ -1,12 +1,25 @@
 p#notice= notice
 h1 Станции
 
-- if @railway_stations.present?
-  = render @railway_stations
-- else
-  | Не создано ни одной станции
-.clearfix
+.table-responsive
+  table#railway_station.table.table-hover.table-striped data-filter-control="true" data-page-list="[8, 25, 50, 100, 200]" data-page-size="8" data-pagination="true" data-query-params-type="Else" data-search="true" data-show-columns="true" data-show-export="true" data-show-toggle="true" data-sort-name="id" data-sort-order="asc" data-toggle="table" 
+    thead
+      tr
+        th Название
+        th
+    tbody
+      - if @railway_stations.empty?
+          p Не создано ни одной станции
+      - else
+        - @railway_stations.each do |railway_station|
+            tr
+              td = railway_station.name
+              td 
+                = link_to 'Show', railway_station, class: 'btn btn-sm btn-default'
+                = link_to 'Edit', edit_railway_station_path(railway_station), class: 'btn btn-sm btn-success'
+                = link_to 'Destroy', railway_station, class: 'btn btn-sm btn-default', method: :delete, data: { confirm: 'Are you sure?' }
 
 br
 = link_to 'Создать новую станцию', new_railway_station_path
 = render "common/come_back"
+

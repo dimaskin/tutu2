@@ -1,7 +1,19 @@
 p#notice= notice
 
-h1 Поезда
-= render @trains
+.table-responsive
+  table#trains.table.table-hover.table-striped data-filter-control="true" data-page-list="[8, 25, 50, 100, 200]" data-page-size="8" data-pagination="true" data-query-params-type="Else" data-search="true" data-show-columns="true" data-show-export="true" data-show-toggle="true" data-sort-name="id" data-sort-order="asc" data-toggle="table" 
+    thead
+      tr
+        th Номер поезда
+        th
+    tbody
+      -@trains.each do |train|
+        tr
+          td = train.number
+          td 
+            = link_to 'Show', train, class: 'btn btn-sm btn-default'
+            = link_to 'Edit', edit_train_path(train), class: 'btn btn-sm btn-success'
+            = link_to 'Destroy', train, class: 'btn btn-sm btn-default', method: :delete, data: { confirm: 'Are you sure?' }
 
 br
 = link_to 'Создать новый поезд', new_train_path
