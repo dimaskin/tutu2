@@ -1,0 +1,10 @@
+h1 выберите станции
+= form_tag( new_search_path ) do |f| 
+  .field
+    = f.label :railway_station
+    = f.collection_select :railway_station, RailwayStation.all, :id, :name
+
+/collection_select(object, method, collection, value_method, text_method, 
+                    options = {}, html_options = {})
+/f.collection_select(:industry_ids, Industry.all, :id, :name, {:multiple => true}, 
+                    size: Industry.all.length)
