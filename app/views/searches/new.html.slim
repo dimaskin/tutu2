@@ -1,10 +1,11 @@
 h1 выберите станции
-= form_tag( new_search_path ) do |f| 
+= form_for @search  do |f| 
   .field
-    = f.label :railway_station
-    = f.collection_select :railway_station, RailwayStation.all, :id, :name
-
-/collection_select(object, method, collection, value_method, text_method, 
-                    options = {}, html_options = {})
-/f.collection_select(:industry_ids, Industry.all, :id, :name, {:multiple => true}, 
-                    size: Industry.all.length)
+    = f.label :start_rws
+    /= f.select :start_rws, options_for_select(@railway_stations), :include_blank => false
+    = f.collection_select :start_rws, RailwayStation.all, :id, :name, {:class=>'form-control'}
+  .field
+    = f.label :finish_rws
+    = f.collection_select :finish_rws, RailwayStation.all, :id, :name, {:class=>'form-control'}
+  br
+    .actions = f.submit "Search", :class => "btn btn-primary"
