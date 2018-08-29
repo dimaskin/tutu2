@@ -17,6 +17,29 @@ class RailwayStation < ApplicationRecord
     station_route(route).try(:position)
   end
 
+  def get_arrive_time(route)
+    [station_route(route).try(:arrive_hour), station_route(route).try(:arrive_minute)]
+  end
+
+  def update_arrive_time(route, hour, minute)
+    station_route = station_route(route)
+    if station_route
+      station_route.update(arrive_hour:   hour) 
+      station_route.update(arrive_minute: minute) 
+    end
+  end
+
+  def get_depart_time(route)
+    [station_route(route).try(:depart_hour),station_route(route).try(:depart_minute)]
+  end
+
+  def update_depart_time(route, hour, minute)
+    station_route = station_route(route)
+    if station_route
+      station_route.update(depart_hour:   hour) 
+      station_route.update(depart_minute: minute) 
+    end
+  end
 
   private
   def station_route(route)
