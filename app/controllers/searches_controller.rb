@@ -5,10 +5,13 @@ class SearchesController < ApplicationController
     @railway_stations = RailwayStation.pluck(:name)
   end
 
-  def create 
-    @search = Search.create(search_param)
-    #render text: search_param
-    #redirect_to @search
+  def create
+    @search = Search.create!(search_param)
+    if @search.save
+      redirect_to @search
+    else
+      render :new
+    end
   end
 
   def show

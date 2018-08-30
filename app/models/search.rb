@@ -1,6 +1,7 @@
 class Search < ApplicationRecord
+
   def search_routes
-    routes = Route.railway_stations.where(id: [1,3])
-    #routes = routes.where()
+    #Route.joins(:railway_stations).where(railway_stations: {id:[start_rws,finish_rws]})
   end
+
 end

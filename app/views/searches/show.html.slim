@@ -1,7 +1,9 @@
 h1 Маршруты и поезда
--if @routes.empty?
-  | нет таких маршрутов
--else
-  @search.search_routes.each do |route|
+-if @search.search_routes.present?
+  -@search.search_routes.each do |route|
     .div
       p=route.name
+-else
+  | нет таких маршрутов
+
+/<%= render @search.route %>
