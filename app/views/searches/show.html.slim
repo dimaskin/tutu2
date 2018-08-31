@@ -1,9 +1,11 @@
 h1 Маршруты и поезда
--if @search.search_routes.present?
-  -@search.search_routes.each do |route|
+-if @search.search_data.present?
+  -@search.search_data.each do |train|
     .div
-      p=route.name
+      p=train.number
+      p=train.route.name
+      br
 -else
-  | нет таких маршрутов
+  | нет данных
 
 /<%= render @search.route %>
