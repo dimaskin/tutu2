@@ -2,24 +2,18 @@ msk = RailwayStation.create(name: "Москва")
 spb = RailwayStation.create(name: "Санкт-Петербург")
 nv  = RailwayStation.create(name: "Нижневартовск")
 srg = RailwayStation.create(name: "Сургут")
-
+ 
 r1 = Route.create(name: "Москва - Сургут - Нижневартовск")
-r1.railway_stations << msk << srg << nv
-#set staiton_position manual
-r1_msk = RailwayStationsRoute.where(route: r1).where(railway_station: msk)
-r1_msk.update(position: 1)
-r1_msk.update(depart_hour: 11)
-r1_msk.update(depart_minute: 45)
-r1_srg = RailwayStationsRoute.where(route: r1).where(railway_station: srg)
-r1_srg.update(position: 2)
-r1_srg.update(arrive_hour: 4)
-r1_srg.update(arrive_minute: 0)
-r1_srg.update(depart_hour: 18)
-r1_srg.update(depart_minute: 15)
-r1_nv = RailwayStationsRoute.where(route: r1).where(railway_station: nv)
-r1_nv.update(position: 3)
-r1_nv.update(arrive_hour: 23)
-r1_nv.update(arrive_minute: 55)
+r1.railway_stations << msk
+r1.railway_stations << srg 
+r1.railway_stations << nv
+msk.update_position(r1,1)
+msk.update_arrive_time(r1,11,45)
+srg.update_position(r1,2)
+srg.update_depart_time(r1,18,15)
+srg.update_arrive_time(r1,4,0)
+nv.update_position(r1,3)
+nv.update_depart_time(r1,23,55)
 
 r2 = Route.create(name: "Москва - Санкт-Петербург")
 r2.railway_stations << msk << spb

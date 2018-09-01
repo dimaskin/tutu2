@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   end
   resources :routes
   resources :searches
+  resources :tickets
 end
