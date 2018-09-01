@@ -1,13 +1,21 @@
 h1 Билет
 
 p
-  strong ФИО: = @ticket.fio
+  strong 
+    | ФИО: 
+    = @ticket.fio
 p
-  strong Данные документа: = @ticket.passport
+  strong 
+    | Данные документа: 
+    = @ticket.passport
 p
-  strong Станция отправления: = @ticket.start_station.title
+  strong 
+    | Станция отправления: 
+    = @ticket.start_station.name
 p
-  strong Станция назначения: = @ticket.finish_station.title
+  strong 
+    | Станция назначения: 
+    = @ticket.finish_station.name
 
 
 = link_to 'Редактировать', edit_ticket_path(@ticket)

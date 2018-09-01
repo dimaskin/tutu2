@@ -46,11 +46,11 @@ class TicketsController < ApplicationController
   end
 
   def ticket_params
-    params.require(:ticket).permit(:train_id, :start_station_id, :finish_station_id, :fio, :passport)
+    params.require(:ticket).permit(:train_id, :user_id, :start_station_id, :finish_station_id, :fio, :passport)
   end
 
   def new_ticket_params
-    params.require(:ticket).permit(:train_id, :start_station_id, :finish_station_id)
+    params.require(:ticket).permit(:train_id, :user_id, :start_station_id, :finish_station_id)
   end
 
   def hidden_params

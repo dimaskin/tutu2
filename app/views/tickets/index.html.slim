@@ -11,10 +11,10 @@ h1 Список билетов
       -if @tickets.present?
         -@tickets.each do |ticket|
           tr
-            td = #{ticket.start_station.title} - #{ticket.finish_station.title}"
+            td = "#{ticket.start_station.name} - #{ticket.finish_station.name}"
             td
               = link_to 'Show', ticket, class: 'btn btn-sm btn-default'
-              = link_to 'Edit', edit_train_path(ticket), class: 'btn btn-sm btn-success'
+              = link_to 'Edit', edit_ticket_path(ticket), class: 'btn btn-sm btn-success'
               = link_to 'Destroy', ticket, class: 'btn btn-sm btn-default', method: :delete, data: { confirm: 'Are you sure?' }
  
               

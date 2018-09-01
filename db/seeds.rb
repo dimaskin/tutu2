@@ -15,6 +15,7 @@ srg.update_arrive_time(r1,4,0)
 nv.update_position(r1,3)
 nv.update_depart_time(r1,23,55)
 
+
 r2 = Route.create(name: "Москва - Санкт-Петербург")
 r2.railway_stations << msk << spb
 #set staiton_position manual
