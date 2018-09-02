@@ -15,7 +15,14 @@ gem 'jbuilder', '~> 2.5'
 gem "slim-rails"
 gem 'bootstrap', '~> 4.1.1'
 gem 'rails-ujs'
-gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'faker'
+gem 'select2-rails'
+gem 'bootstrap-multiselect-rails'
+gem "bootstrap-table-rails"
+gem 'toastr_rails'
+gem 'font-awesome-rails'
 
 source 'https://rails-assets.org'do
   gem 'rails-assets-tether','>= 1.1.1'

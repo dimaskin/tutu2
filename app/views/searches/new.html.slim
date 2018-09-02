@@ -1,0 +1,10 @@
+h1 выберите станции
+= form_for @search, html: {class: "pure-form"}  do |f| 
+  .field
+    = f.label :start_rws
+    = f.collection_select :start_rws, RailwayStation.all, :id, :name, {:class=>'form-control'}
+  .field
+    = f.label :finish_rws
+    = f.collection_select :finish_rws, RailwayStation.all, :id, :name, {:class=>'form-control'}
+  br
+    .actions = f.submit "Search", :class => "btn btn-primary"

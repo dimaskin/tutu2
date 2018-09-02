@@ -2,9 +2,13 @@ Rails.application.routes.draw do
   
   root "welcome#index"
 
-  #root "railway_stations#index"
-  resources :trains
-  resources :railway_stations
+  resources :trains do
+    resources :carriages, shallow: true
+  end
+  resources :railway_stations do
+    patch :update_position, :update_arrive_time, :update_depart_time, on: :member
+  end
   resources :routes
-  resources :carriages
+  resources :searches
+  resources :tickets
 end

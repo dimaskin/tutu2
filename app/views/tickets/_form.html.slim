@@ -1,0 +1,13 @@
+= form_for(@ticket) do |f|
+  = render 'common/errors', resource: @ticket
+  = f.hidden_field :train_id
+  = f.hidden_field :start_station_id 
+  = f.hidden_field :finish_station_id
+  = f.hidden_field :user_id, value: '1'
+  .field
+    = f.label :fio, 'ФИО'
+    = f.text_field :fio
+  .field
+    = f.label :passport, 'Паспортные данные'
+    = f.text_field :passport
+  = f.submit "#{@ticket.new_record? ? 'Купить' : 'Обновить' }"
