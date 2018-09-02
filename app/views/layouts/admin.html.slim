@@ -1,0 +1,35 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
+    title Tutu
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  body
+    .container
+      header
+        nav.navbar.navbar-expand-md.navbar-dark.bg-dark
+          a.navbar-brand = link_to "tutu", root_path  
+          button.navbar-toggler aria-controls="navbarNavDropdown" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNavDropdown" data-toggle="collapse" type="button" 
+            span.navbar-toggler-icon
+          #navbarNavDropdown.navbar-collapse.collapse
+            ul.navbar-nav.mr-auto
+              li.nav-item.active = link_to 'Станции', railway_stations_path, :class => "nav-link"
+              li.nav-item = link_to 'Маршруты', routes_path, :class => "nav-link"
+              li.nav-item = link_to 'Поезда', trains_path, :class => "nav-link"
+              li.nav-item = link_to 'Билеты', tickets_path, :class => "nav-link"
+              li.nav-item = link_to 'Поиск билетов', new_search_path, :class => "nav-link"
+                
+            /ul.navbar-nav
+              li.nav-item
+                a.nav-link href=("{{ url('/login') }}")  Login
+              li.nav-item
+                a.nav-link href=("{{ url('/register') }}")  Register
+        p.notice = notice
+        p.alert = alert
+      main
+        = yield
+      footer.fixed-bottom
+        = render "common/footer"
+      
