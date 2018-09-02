@@ -9,11 +9,6 @@ class SearchesController < ApplicationController
     @search = Search.new(search_param)
     @search.search_data
     render :show
-    #if @search.save
-    #  redirect_to @search
-    #else
-    #  render :new
-    #end
   end
 
   def show
