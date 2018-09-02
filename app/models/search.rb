@@ -8,14 +8,6 @@ class Search < ApplicationRecord
   def get_arrive_time(route)
     "#{route.railway_stations.last.arrive_hour} : #{route.railway_stations.last.arrive_minute}" 
   end
-  
-    
-  
-  #def get_depart_hour(route)
-  #  route.railway_stations.last.depart_hour
-  #end
-  #def get_depart_minute(route)
-  #  route.railway_stations.last.depart_minute
-  #end
+
 
 end

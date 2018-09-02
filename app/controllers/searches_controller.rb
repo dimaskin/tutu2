@@ -6,12 +6,14 @@ class SearchesController < ApplicationController
   end
 
   def create
-    @search = Search.create!(search_param)
-    if @search.save
-      redirect_to @search
-    else
-      render :new
-    end
+    @search = Search.new(search_param)
+    @search.search_data
+    render :show
+    #if @search.save
+    #  redirect_to @search
+    #else
+    #  render :new
+    #end
   end
 
   def show
