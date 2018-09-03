@@ -1,8 +1,6 @@
-class RailwayStationsController < Admin::BaseController
+class Admin::RailwayStationsController < Admin::BaseController
   before_action :set_railway_station, only: [:show, :edit, :update, :destroy, :update_position]
-
   before_action :set_route, only: [:update_position]
-
 
   def index
     @railway_stations = RailwayStation.all

@@ -5,11 +5,14 @@ header
       span.navbar-toggler-icon
     #navbarNavDropdown.navbar-collapse.collapse
       ul.navbar-nav.mr-auto
-        li.nav-item = link_to 'Станции', admin_railway_stations_path, :class => "nav-link"
-        li.nav-item = link_to 'Маршруты', admin_routes_path, :class => "nav-link"
-        li.nav-item = link_to 'Поезда', admin_trains_path, :class => "nav-link"
-        li.nav-item = link_to 'Билеты', admin_tickets_path, :class => "nav-link"
-        li.nav-item = link_to 'Поиск билетов', new_search_path, :class => "nav-link"
-        li.nav-item = link_to 'Логин', new_search_path, :class => "nav-link"
-        li.nav-item = link_to 'Разлогин', new_search_path, :class => "nav-link"
+        -if user_signed_in?
+          li.nav-item = link_to 'Станции', admin_railway_stations_path, :class => "nav-link"
+          li.nav-item = link_to 'Маршруты', admin_routes_path, :class => "nav-link"
+          li.nav-item = link_to 'Поезда', admin_trains_path, :class => "nav-link"
+          li.nav-item = link_to 'Билеты', admin_tickets_path, :class => "nav-link"
+          li.nav-item = link_to "Текущий пользователь: #{current_user.email}", edit_user_registration_path, :class => "nav-link"
+          li.nav-item = link_to 'Разлогин', destroy_user_session_path, method: :delete, :class => "nav-link"
+        -else
+          li.nav-item = link_to 'Поиск билетов', new_search_path, :class => "nav-link"
+          li.nav-item = link_to 'Логин', new_user_session_path, :class => "nav-link"
           
