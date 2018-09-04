@@ -61,6 +61,6 @@ p
     = @train.places_by_type(compartmentCarriage, :lowerbottom_seats_berth)
     br
 p
-  = link_to "Добавить вагон", new_train_carriage_path(@train)
-= link_to 'Изменить', edit_train_path(@train)
-= link_to 'Назад', trains_path
+  = link_to "Добавить вагон", new_admin_train_carriage_path(@train)
+  = link_to 'Изменить', edit_admin_train_path(@train)
+  = link_to 'Назад', admin_trains_path

@@ -19,6 +19,6 @@ br
             tr
               td = route.name
               td 
-                = link_to 'Show', route, class: 'btn btn-sm btn-default'
-                = link_to 'Edit', edit_route_path(route), class: 'btn btn-sm btn-success'
-                = link_to 'Destroy', route, class: 'btn btn-sm btn-default', method: :delete, data: { confirm: 'Are you sure?' }
+                = link_to 'Show', [:admin, route], class: 'btn btn-sm btn-default'
+                = link_to 'Edit', edit_admin_route_path(route), class: 'btn btn-sm btn-success'
+                = link_to 'Destroy', [:admin, route], class: 'btn btn-sm btn-default', method: :delete, data: { confirm: 'Are you sure?' }

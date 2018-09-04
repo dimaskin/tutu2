@@ -19,7 +19,7 @@ class Admin::RailwayStationsController < Admin::BaseController
   def create
     @railway_station = RailwayStation.new(railway_station_params)
       if @railway_station.save
-        redirect_to @railway_station, notice: 'Станция создана'
+        redirect_to [:admin, @railway_station], notice: 'Станция создана'
       else
         render :new
       end
@@ -27,7 +27,7 @@ class Admin::RailwayStationsController < Admin::BaseController
 
   def update
     if @railway_station.update(railway_station_params)
-      redirect_to @railway_station, notice: 'Станция обновлена'
+      redirect_to admin_railway_station_url, notice: 'Станция обновлена'
     else
       render :edit
     end
@@ -36,12 +36,12 @@ class Admin::RailwayStationsController < Admin::BaseController
   def update_position
     @route = Route.find(params[:route_id])
     @railway_station.update_position(@route, params[:position])
-    redirect_to @route
+    redirect_to [:admin, @route]
   end
 
   def destroy
     @railway_station.destroy
-      redirect_to railway_stations_url, notice: 'Станция удалена'
+      redirect_to admin_railway_stations_url, notice: 'Станция удалена'
   end
 
   private
