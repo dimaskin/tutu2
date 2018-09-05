@@ -12,12 +12,12 @@ h1 Список билетов
           tr
             td = "#{ticket.start_station.name} - #{ticket.finish_station.name}"
             td
-              = link_to 'Show', [:admin,ticket], class: 'btn btn-sm btn-default'
-              = link_to 'Edit', edit_admin_ticket_path(ticket), class: 'btn btn-sm btn-success'
-              = link_to 'Destroy', [:admin,ticket], class: 'btn btn-sm btn-default', method: :delete, data: { confirm: 'Are you sure?' }
+              = link_to 'Show', ticket, class: 'btn btn-sm btn-default'
+              = link_to 'Edit', edit_ticket_path(ticket), class: 'btn btn-sm btn-success'
+              = link_to 'Destroy', ticket, class: 'btn btn-sm btn-default', method: :delete, data: { confirm: 'Are you sure?' }
  
               
       -else
         | нет данных
 br
-= link_to 'Добавить билет', new_admin_ticket_path
+= link_to 'Добавить билет', new_ticket_path

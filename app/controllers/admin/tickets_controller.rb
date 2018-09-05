@@ -1,66 +1,58 @@
 class Admin::TicketsController < ApplicationController
-  #before_action :set_ticket, only: [:show, :edit, :update, :destroy]
-  #before_action :hidden_params, only: [:new, :create]
+  before_action :set_ticket, only: [ :show, :destroy, :edit, :update ]
+  before_action :set_environ, only: [:update, :edit] 
 
   def index
-    if current_user.admin?
-      @tickets = Ticket.all
-    else
-      @tickets = Ticket.where(user: current_user)
-    end
+    @tickets = Ticket.all
+  end
+
+  def new
+    @ticket = Ticket.new
+    @train = Train.find(params[:train_id])
+    @start_station  = RailwayStation.find(params[:start_station_id])
+    @finish_station = RailwayStation.find(params[:finish_station_id])
   end
 
   def show
   end
 
-  def new
-#    @ticket = Ticket.new(new_ticket_params)
-  end
-
   def create
-#    @ticket = Ticket.new(ticket_params)
-#
-#    if @ticket.save
-#    redirect_to @ticket
-#    else
-#    render :new
-#    end
+    @ticket = Ticket.new(ticket_params)
+    if @ticket.save
+      redirect_to [:admin, @ticket]
+    else
+      render :new
+    end
   end
 
   def edit
   end
 
   def update
-#      if @ticket.update(ticket_params)
-#      redirect_to @ticket
-#      else
-#      render :edit
-#      end
+    if @ticket.update(ticket_params)
+      redirect_to [:admin, @ticket]
+    else
+      render :new
+    end
   end
 
   def destroy
-#      @ticket.destroy
-#      redirect_to tickets_path
+    @ticket.destroy
+    redirect_to admin_tickets_url
   end
 
   private
+  def ticket_params
+    params.require(:ticket).permit(:passport, :fio, :user_id, :train_id, :start_station_id, :finish_station_id )
+  end
 
-#  def set_ticket
-#      @ticket = Ticket.find(params[:id])
-#  end
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
+  end
 
-#  def ticket_params
-#      params.require(:ticket).permit(:train_id, :user_id, :start_station_id, :finish_station_id, :fio, :passport)
-#  end
-
-#  def new_ticket_params
-#      params.require(:ticket).permit(:train_id, :user_id, :start_station_id, :finish_station_id)
-#  end
-
-#  def hidden_params
-#      @train = Train.find(new_ticket_params[:train_id])
-#      @start_station = RailwayStation.find(new_ticket_params[:start_station_id])
-#      @finish_station = RailwayStation.find(new_ticket_params[:finish_station_id])
-#  end
-
+  def set_environ
+    @train = @ticket.train
+    @start_station  = @ticket.start_station
+    @finish_station = @ticket.finish_station
+  end
 end
