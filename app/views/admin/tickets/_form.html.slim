@@ -1,13 +1,34 @@
-= form_for(@ticket) do |f|
+= form_for([:admin, @ticket]) do |f|
   = render 'common/errors', resource: @ticket
-  = f.hidden_field :train_id
-  = f.hidden_field :start_station_id 
-  = f.hidden_field :finish_station_id
-  = f.hidden_field :user_id, value: '1'
   .field
-    = f.label :fio, 'ФИО'
-    = f.text_field :fio
+    = f.hidden_field :train_id, value: @train.id
+  /= f.hidden_field :start_station_id 
+  /= f.hidden_field :finish_station_id
+  
   .field
-    = f.label :passport, 'Паспортные данные'
-    = f.text_field :passport
+    = f.label :user_id, 'Имя пользователя'
+    = f.collection_select :user_id, User.all, :id, :fio
+  .field
+    = f.label :train_id, 'Номер поезда'
+    = f.collection_select :train_id, Train.all, :id, :number
+  
   = f.submit "#{@ticket.new_record? ? 'Купить' : 'Обновить' }"
+
+/= form_for [:admin, ticket] do |f|
+  = render 'common/errors', resource: ticket
+  .field
+    = f.label :user_id, 'Имя пользователя'
+    = f.collection_select :user_id, User.all, :id, :fio
+  .field
+    = f.label :passport, 'Паспорт'
+    = f.text_field :passport
+  
+    = "Поезд : \#{ @train.number }"
+  .field
+    = f.hidden_field :start_station_id, value: @start_station.id
+    = "Начальная станция : \#{@start_station.title}"
+  .field
+    = f.hidden_field :end_station_id, value: @end_station.id
+    = "Конечная станция : \#{@end_station.title}"
+  .actions
+    = f.submit  "\#{ @ticket.new_record? ? 'Оформить' : 'Изменить' }"

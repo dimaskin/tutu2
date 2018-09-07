@@ -4,9 +4,10 @@ class Admin::TicketsController < ApplicationController
 
   def index
     @tickets = Ticket.all
+    @users   = User.all
   end
 
-  def new
+  def new  
     @ticket = Ticket.new
     @train = Train.find(params[:train_id])
     @start_station  = RailwayStation.find(params[:start_station_id])

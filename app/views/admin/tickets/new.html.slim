@@ -1,6 +1,6 @@
 h1 Новый билет
 -if user_signed_in?
-  = render 'form'
+  = render 'form' ticket: @ticket
 -else
   = link_to "Войти", new_user_session_path
   
