@@ -1,34 +1,21 @@
-= form_for([:admin, @ticket]) do |f|
+= form_for [:admin, ticket] do |f|
   = render 'common/errors', resource: @ticket
-  .field
-    = f.hidden_field :train_id, value: @train.id
-  /= f.hidden_field :start_station_id 
-  /= f.hidden_field :finish_station_id
-  
-  .field
-    = f.label :user_id, 'Имя пользователя'
-    = f.collection_select :user_id, User.all, :id, :fio
-  .field
-    = f.label :train_id, 'Номер поезда'
+  p
+    = f.label :user_id, "User:"
+    = f.collection_select :user_id, User.all, :id, :email
+  p
+    = f.label :train_id, "Train:"
     = f.collection_select :train_id, Train.all, :id, :number
-  
-  = f.submit "#{@ticket.new_record? ? 'Купить' : 'Обновить' }"
-
-/= form_for [:admin, ticket] do |f|
-  = render 'common/errors', resource: ticket
-  .field
-    = f.label :user_id, 'Имя пользователя'
-    = f.collection_select :user_id, User.all, :id, :fio
-  .field
-    = f.label :passport, 'Паспорт'
+  p
+    = f.label :start_station_id, "Start Station:"
+    = f.collection_select :start_station_id, RailwayStation.all, :id, :name
+  p
+    = f.label :finish_station_id, "End Station:"
+    = f.collection_select :finish_station_id, RailwayStation.all, :id, :name
+  p
+    = f.label :fio, "FIO:"
+    = f.text_field :fio
+  p
+    = f.label :passport_number, "Passport:"
     = f.text_field :passport
-  
-    = "Поезд : \#{ @train.number }"
-  .field
-    = f.hidden_field :start_station_id, value: @start_station.id
-    = "Начальная станция : \#{@start_station.title}"
-  .field
-    = f.hidden_field :end_station_id, value: @end_station.id
-    = "Конечная станция : \#{@end_station.title}"
-  .actions
-    = f.submit  "\#{ @ticket.new_record? ? 'Оформить' : 'Изменить' }"
+  = f.submit "#{ticket.new_record? ? 'Создать' : 'Изменить'}"

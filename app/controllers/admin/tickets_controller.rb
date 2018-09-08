@@ -8,10 +8,10 @@ class Admin::TicketsController < ApplicationController
   end
 
   def new  
-    @ticket = Ticket.new
-    @train = Train.find(params[:train_id])
-    @start_station  = RailwayStation.find(params[:start_station_id])
-    @finish_station = RailwayStation.find(params[:finish_station_id])
+    @ticket = Ticket.new()
+    #@train = Train.find(params[:train_id])
+    #@start_station  = RailwayStation.find(params[:start_station_id])
+    #@finish_station = RailwayStation.find(params[:finish_station_id])
   end
 
   def show
@@ -52,8 +52,8 @@ class Admin::TicketsController < ApplicationController
   end
 
   def set_environ
-    @train = @ticket.train
-    @start_station  = @ticket.start_station
-    @finish_station = @ticket.finish_station
+    #@train = @ticket.train
+    #@start_station  = @ticket.start_station
+    #@finish_station = @ticket.finish_station
   end
 end
