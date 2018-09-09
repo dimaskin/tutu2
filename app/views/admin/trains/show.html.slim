@@ -1,0 +1,66 @@
+
+h1 Поезд
+.col-xs-offset-2.col-xs-4 Номер:
+.col-xs-4 = @train.number
+.clearfix
+.col-xs-offset-2.col-xs-4  Маршрут на котором находится поезд:
+- if @train.route.present?
+    .col-xs-4 = @train.route.name
+- else
+    .col-xs-4 Поезд не находится ни на какой станции
+.clearfix
+
+p
+  strong
+    | Плацкартных вагонов:
+    br
+  = @train.get_carriages_economy_count
+  br
+p
+  strong
+    | Купейных вагонов:
+    br
+  = @train.get_carriages_compartment_count
+  br
+p
+  strong
+    | Сидячих вагонов:
+    br
+  = @train.get_carriages_seat_count
+  br
+p
+  strong
+    | СВ вагонов:
+    br
+  = @train.get_carriages_sv_count
+  br
+
+p
+  strong
+    | Плацкартных мест:
+    br
+  - if @train.get_carriages_economy_count.zero?
+    | Нет плацкартных вагонов
+  - else
+    | Верхних:
+    = @train.places_by_type(:EconomyCarriage, :top_seats)
+    br
+    | Нижних:
+    = @train.places_by_type(:EconomyCarriage, :bottom_seats)
+p
+  strong
+    | Купейных мест:
+    br
+  - if @train.get_carriages_compartment_count.zero?
+    | Нет купейных вагонов
+  -else
+    | Верхних:
+    = @train.places_by_type(:compartmentCarriage, :top_seats)
+    br
+    | Нижних:
+    = @train.places_by_type(compartmentCarriage, :lowerbottom_seats_berth)
+    br
+p
+  = link_to "Добавить вагон", new_admin_train_carriage_path(@train)
+  = link_to 'Изменить', edit_admin_train_path(@train)
+  = link_to 'Назад', admin_trains_path

@@ -13,9 +13,15 @@
           tr
             td = train.number
             td = train.route.name
-            td = train.route.railway_stations.first.get_arrive_time(train.route)
-            td = train.route.railway_stations.last.get_depart_time(train.route)
-            /td = link_to 'Купить билет', new_ticket_path(ticket: { train_id: train.id, start_station_id:  1, finish_station_id: 4}) 
-            td = link_to 'Купить билет', new_ticket_path(ticket: { train_id: train.id, start_station_id:  train.route.railway_stations.first, finish_station_id: train.route.railway_stations.last})   
+            td = @start_rws.get_arrive_time(train.route)
+            td = @finish_rws.get_depart_time(train.route)
+            -if current_user.admin?
+              td = link_to 'Купить билет', new_admin_ticket_path(ticket: { train_id: train.id, 
+                                                        start_station_id:  @start_rws, 
+                                                        finish_station_id: @finish_rws})
+            -else
+              td = link_to 'Купить билет', new_ticket_path(ticket: { train_id: train.id, 
+                                                        start_station_id:  @start_rws, 
+                                                        finish_station_id: @finish_rws})   
       -else
         | нет данных

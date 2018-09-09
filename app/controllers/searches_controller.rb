@@ -8,12 +8,9 @@ class SearchesController < ApplicationController
   def create
     @search = Search.new(search_param)
     @search.search_data
+    @start_rws  = RailwayStation.find(search_param[:start_rws])
+    @finish_rws = RailwayStation.find(search_param[:finish_rws])
     render :show
-    #if @search.save
-    #  redirect_to @search
-    #else
-    #  render :new
-    #end
   end
 
   def show

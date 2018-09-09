@@ -23,6 +23,8 @@ gem 'bootstrap-multiselect-rails'
 gem "bootstrap-table-rails"
 gem 'toastr_rails'
 gem 'font-awesome-rails'
+gem 'devise'
+gem 'letter_opener'
 
 source 'https://rails-assets.org'do
   gem 'rails-assets-tether','>= 1.1.1'

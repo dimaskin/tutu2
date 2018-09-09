@@ -3,11 +3,11 @@
   = f.hidden_field :train_id
   = f.hidden_field :start_station_id 
   = f.hidden_field :finish_station_id
-  = f.hidden_field :user_id, value: '1'
   .field
     = f.label :fio, 'ФИО'
-    = f.text_field :fio
+    = f.text_field :fio, required: true, class: 'form-control', value:current_user.fio
+    
   .field
     = f.label :passport, 'Паспортные данные'
-    = f.text_field :passport
+    = f.text_field :passport, required: true, class: 'form-control', value:current_user.passport
   = f.submit "#{@ticket.new_record? ? 'Купить' : 'Обновить' }"
