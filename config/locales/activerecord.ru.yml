@@ -1,0 +1,11 @@
+ru:
+  activerecord:
+    models:
+      railway_station: 'Станция'
+      train: 'Поезд'
+    attributes:
+      railway_station:
+        name: 'Название'
+      train:
+        number: 'Номер'
+        current_station: 'Текущая станция'
