@@ -11,7 +11,9 @@ html
       = render "common/header"
         p.notice = notice
         p.alert = alert
+        /= bootstrap_flash
       main
+        
         = yield
       footer.fixed-bottom
         = render "common/footer"
