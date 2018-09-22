@@ -1,0 +1,59 @@
+ru:
+  common:
+    exit: 'Выход'
+    sign: 'Вход'
+    account: 'Аккаунт'
+    show: 'Показать'
+    back: 'Назад'
+    edit: 'Изменить'
+    destroy: 'Удалить'
+    errors: 'При заполнении формы возникли ошибки'
+    empty_stations: 'Список станций пуст'
+  admin:
+    railway_stations:
+      new:
+        name: 'Новая станция'
+      edit:
+        name: 'Редактирование станции'
+      show:
+        name: 'Станция'
+      index:
+        stations_list: 'Список станций'
+        table_name: 'Название станции'
+        new: 'Новая станция'
+        back: 'Вернуться в меню'
+      form:
+        submit: '%{action} станцию'
+    trains:
+      new:
+        title: 'Новый поезд'
+      edit:
+        title: 'Редактирование поезда'
+      show:
+        title: 'Поезд'
+      index:
+        title: 'Список поездов'
+        table_number: 'Номер поезда'
+        new: 'Новый поезд'
+      form:
+        submit: '%{action} поезд'
+    routes:
+      new:
+        title: 'Новый маршрут'
+      edit:
+        title: 'Редактирование маршрута'
+      show:
+        title: 'Маршрут'
+        stations: 'Список станций в маршруте'
+        trains: 'Список поездов с указанным маршрутом'
+        
+        table_title_station: 'Название станции'
+        table_position: 'Позиция'
+        table_arrive: 'Время прибытия'
+        table_departure: 'Время убытия'
+      index:
+        title: 'Список маршрутов'
+        table_title: 'Название маршрута'
+        new: 'Новый маршрут'
+      form:
+        submit: '%{action} маршрут'

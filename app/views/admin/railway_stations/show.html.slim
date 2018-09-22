@@ -1,6 +1,6 @@
 p
-  strong Название:
-  = @railway_station.name
+  strong  
+    = "#{t('.title')}: #{@railway_station.name}"
 br
 h6.center Список маршрутов которым принадлежит станция:
 br
@@ -19,6 +19,6 @@ br
             tr
               td = route.name
               td 
-                = link_to 'Show', [:admin, route], class: 'btn btn-sm btn-default'
-                = link_to 'Edit', edit_admin_route_path(route), class: 'btn btn-sm btn-success'
-                = link_to 'Destroy', [:admin, route], class: 'btn btn-sm btn-default', method: :delete, data: { confirm: 'Are you sure?' }
+                = link_to t('common.show'), [:admin, route], class: 'btn btn-sm btn-default'
+                = link_to t('common.edit'), edit_admin_route_path(route), class: 'btn btn-sm btn-success'
+                = link_to t('common.destroy'), [:admin, route], class: 'btn btn-sm btn-default', method: :delete, data: { confirm: 'Are you sure?' }
