@@ -35,6 +35,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'railroady'
+  gem "lol_dba"
 end
 
 group :development do

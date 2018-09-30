@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180902131808) do
+ActiveRecord::Schema.define(version: 20180930112247) do
 
   create_table "carriages", force: :cascade do |t|
     t.integer "number"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20180902131808) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["id", "type"], name: "index_carriages_on_id_and_type"
     t.index ["train_id"], name: "index_carriages_on_train_id"
   end
 
@@ -67,6 +68,10 @@ ActiveRecord::Schema.define(version: 20180902131808) do
     t.datetime "updated_at", null: false
     t.string "fio"
     t.string "passport"
+    t.index ["finish_station_id"], name: "index_tickets_on_finish_station_id"
+    t.index ["start_station_id"], name: "index_tickets_on_start_station_id"
+    t.index ["train_id"], name: "index_tickets_on_train_id"
+    t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
   create_table "trains", force: :cascade do |t|
@@ -76,6 +81,7 @@ ActiveRecord::Schema.define(version: 20180902131808) do
     t.datetime "updated_at", null: false
     t.integer "route_id"
     t.boolean "carriages_sort", default: true
+    t.index ["current_station_id"], name: "index_trains_on_current_station_id"
     t.index ["route_id"], name: "index_trains_on_route_id"
   end
 
