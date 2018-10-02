@@ -25,6 +25,7 @@ gem 'toastr_rails'
 gem 'font-awesome-rails'
 gem 'devise'
 gem 'letter_opener'
+gem 'sendgrid-ruby'
 
 source 'https://rails-assets.org'do
   gem 'rails-assets-tether','>= 1.1.1'
