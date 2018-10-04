@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 gem 'rails', '~> 5.1.3'
-gem 'sqlite3'
+gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -25,6 +25,7 @@ gem 'toastr_rails'
 gem 'font-awesome-rails'
 gem 'devise'
 gem 'letter_opener'
+gem 'sendgrid-ruby'
 
 source 'https://rails-assets.org'do
   gem 'rails-assets-tether','>= 1.1.1'
@@ -35,6 +36,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'railroady'
+  gem "lol_dba"
 end
 
 group :development do

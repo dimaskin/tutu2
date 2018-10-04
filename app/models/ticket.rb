@@ -6,4 +6,19 @@ class Ticket < ApplicationRecord
 
   validates :fio, :passport, presence: true
   
+  after_create :send_notification_buy_ticket
+  after_destroy :send_notification_cancel_ticket
+
+  def route_name
+    "#{start_station.name} - #{finish_station.name}"
+  end
+
+  private
+  def send_notification_buy_ticket
+    TicketsMailer.buy_ticket(self.user, self).deliver_now
+  end
+
+  def send_notification_cancel_ticket
+    TicketsMailer.cancel_ticket(self.user, self).deliver_now
+  end
 end
