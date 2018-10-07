@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :railway_stations do
       patch :update_position, :update_arrive_time, :update_depart_time, on: :member
     end
+    resources :carriages
     resources :routes
     resources :tickets
   end

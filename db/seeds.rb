@@ -23,6 +23,9 @@ spb.update_position(r2,2)
 spb.update_depart_time(r2,07,25)
 
 t1 = Train.create(number: 1234, current_station: msk, route: r1)
+c1 = t1.carriages.create(type: 'CompartmentCarriage')
+c2 = t1.carriages.create(type: 'CompartmentCarriage')
+
 t2 = Train.create(number: 9876, current_station: msk, route: r2)
 
 r3 = Route.new(name: "Москва - Нижневартовск")
@@ -35,5 +38,7 @@ nv.update_depart_time(r3,04,21)
 
 t3 = Train.create(number: 4412, current_station: msk, route: r3)
 t4 = Train.create(number: 4509, current_station: nv, route: r3)
+
+
 
 #u_admin = User.create(email: "dd@mb-s.ru", password: "111111111", password_confirmation: "111111111", admin: true)

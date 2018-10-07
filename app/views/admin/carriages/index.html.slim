@@ -15,10 +15,10 @@ table
         td = carriage.class
         td = carriage.train.number
         td = carriage.number
-        td = link_to 'Show', carriage_path(carriage)
-        td = link_to 'Edit', edit_carriage_path(carriage)
-        td = link_to 'Destroy', carriage_path(carriage), method: :delete, data: { confirm: 'Are you sure?' }
+        td = link_to 'Show', admin_carriage_path(carriage)
+        td = link_to 'Edit', edit_admin_carriage_path(carriage)
+        td = link_to 'Destroy', admin_carriage_path(carriage), method: :delete, data: { confirm: 'Are you sure?' }
       
     
 br
-= link_to 'Новый вагон', new_carriage_path
+= link_to 'Новый вагон', new_admin_carriage_path

@@ -1,6 +1,6 @@
 p
   strong Поезд:
-  = link_to @carriage.train.number, train_path(@carriage.train)
+  = link_to @carriage.train.number, admin_train_path(@carriage.train)
 p
   strong Тип:
   = @carriage.type
@@ -11,5 +11,5 @@ p
   strong Кол-во нижних мест:
   = @carriage.bottom_seats
 
-= link_to 'Изменение', edit_carriage_path(@carriage)
+= link_to 'Изменение', edit_admin_carriage_path(@carriage)
 = link_to 'Назад', @carriage.train
