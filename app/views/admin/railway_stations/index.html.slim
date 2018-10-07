@@ -12,10 +12,13 @@ h1 = t('.stations_list')
       - else
         - @railway_stations.each do |railway_station|
             tr
-              td = railway_station.name
+              td
+                div id = "railway_station_title_#{railway_station.id}"
+                  = railway_station.name
+                = render 'form', station: railway_station, hidden: true
               td 
                 = link_to t('common.show'), [:admin, railway_station], class: 'btn btn-sm btn-default'
-                = link_to t('common.edit'), edit_admin_railway_station_path(railway_station), class: 'btn btn-sm btn-success'
+                = link_to t('common.edit'), '' , class: 'btn btn-sm btn-success edit_station', data: { station_id: railway_station.id}
                 = link_to t('common.destroy'), [:admin, railway_station], class: 'btn btn-sm btn-default', method: :delete, data: { confirm: 'Are you sure?' }
 
 br
