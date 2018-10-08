@@ -20,7 +20,8 @@ class Admin::CarriagesController < Admin::BaseController
     @carriage = @train.carriages.new(carriage_params)
 
     if @carriage.save
-      redirect_to @train
+      #redirect_to @train
+      redirect_to admin_train_carriages_path
     else
       render :new
     end
@@ -34,6 +35,10 @@ class Admin::CarriagesController < Admin::BaseController
     end
   end
 
+  def destroy
+    @carriage.destroy
+    redirect_to admin_carriage_url
+  end
 
   private
 
