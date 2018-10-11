@@ -1,17 +1,17 @@
 = form_for [:admin, @train, @carriage.becomes(Carriage)] do |f|
-  if carriage.errors.any?
+  -if @carriage.errors.any?
     #error_explanation
       h2 prohibited this carriage from being saved:
       ul
-        carriage.errors.full_messages.each do |message|
+        -@carriage.errors.full_messages.each do |message|
           li = message
     
   .field
     = f.label :train
-    = f.collection_select :train, Train.all, :id, :number
+    = f.collection_select :train_id, Train.all, :id, :number
   .field
     = f.label :type 
-    = f.select :type, Carriage::TYPES, {}
+    = f.select :type, Carriage::TYPES.keys
   .field
     = f.label :top_seats
     = f.number_field :top_seats, in: 1..50, step: 1

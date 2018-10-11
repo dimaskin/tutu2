@@ -51,7 +51,7 @@ class Admin::CarriagesController < Admin::BaseController
   end
 
   def carriage_params
-    params.require(:carriage).permit(:type_carriage, :train_id, :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats, :seat_places)
+    params.require(:carriage).permit(:type, :train_id, :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats, :seat_places)
   end    
 end
   
