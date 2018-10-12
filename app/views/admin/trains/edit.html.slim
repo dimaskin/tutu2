@@ -1,4 +1,4 @@
 h1 Редактирование поезда
-= render 'form'
+= render 'form', train: @train, hidden: false
 = link_to 'Просмотр', [:admin, @train]
 = link_to 'Вернуться назад', admin_trains_path

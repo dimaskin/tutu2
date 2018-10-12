@@ -22,7 +22,7 @@ class Carriage < ApplicationRecord
   private
 
   def update_number
-    #max_number = train.carriages.maximum(:number) || 0
-    #self.number = max_number + 1
+    max_number = train.carriages.maximum(:number) || 0
+    self.number = max_number + 1
   end
 end

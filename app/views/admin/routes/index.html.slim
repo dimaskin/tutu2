@@ -9,11 +9,14 @@ h1 Маршруты
     tbody
       -@routes.each do |route|
         tr
-          td = route.name
+          td
+            div id = "route_title_#{route.id}" 
+              = route.name
+            = render 'form', route: route, hidden: true
           td = route.trains.size
           td 
             = link_to 'Show', [:admin, route], class: 'btn btn-sm btn-default'
-            = link_to 'Edit', edit_admin_route_path(route), class: 'btn btn-sm btn-success'
+            = link_to 'Edit', '', class: 'btn btn-sm btn-success edit_route', data: { route_id: route.id}
             = link_to 'Destroy', [:admin, route], class: 'btn btn-sm btn-default', method: :delete, data: { confirm: 'Are you sure?' }
 
 br

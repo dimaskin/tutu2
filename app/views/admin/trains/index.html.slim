@@ -7,10 +7,13 @@
     tbody
       -@trains.each do |train|
         tr
-          td = train.number
+          td 
+            div id = "train_number_#{train.number}"
+              = train.number
+            = render 'form', train: train, hidden: true
           td 
             = link_to 'Show', [:admin, train], class: 'btn btn-sm btn-default'
-            = link_to 'Edit', edit_admin_train_path(train), class: 'btn btn-sm btn-success'
+            = link_to 'Edit', '', class: 'btn btn-sm btn-success edit_train', data: { train_number: train.number, train_id: train.id}
             = link_to 'Destroy', [:admin, train], class: 'btn btn-sm btn-default', method: :delete, data: { confirm: 'Are you sure?' }
 
 br

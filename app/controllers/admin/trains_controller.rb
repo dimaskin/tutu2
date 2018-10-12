@@ -26,7 +26,7 @@ class Admin::TrainsController < Admin::BaseController
 
   def update
     if @train.update(train_params)
-      redirect_to [:admin, @train], notice: 'Поезд обновлен'
+      redirect_to admin_train_path, notice: 'Поезд обновлен'
     else
       render :edit
     end

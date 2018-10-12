@@ -40,14 +40,14 @@ p
     | Плацкартных мест:
     br
   - if @train.get_carriages_economy_count.zero?
-    | Нет плацкартных вагонов
+      | Нет плацкартных вагонов
   - else
-    | Верхних:
-    = @train.places_by_type(:EconomyCarriage, :top_seats)
-    br
-    | Нижних:
-    = @train.places_by_type(:EconomyCarriage, :bottom_seats)
-p
+      | Верхних:
+      = @train.places_by_type(:EconomyCarriage, :top_seats)
+      br
+      | Нижних:
+      = @train.places_by_type(:EconomyCarriage, :bottom_seats)
+/p
   strong
     | Купейных мест:
     br
@@ -58,7 +58,7 @@ p
     = @train.places_by_type(:compartmentCarriage, :top_seats)
     br
     | Нижних:
-    = @train.places_by_type(compartmentCarriage, :lowerbottom_seats_berth)
+    = @train.places_by_type(compartmentCarriage, :side_bottom_seats)
     br
 p
   = link_to "Добавить вагон", new_admin_train_carriage_path(@train)
